@@ -8,8 +8,9 @@ subjects:
   name: development   # 👈 from certificate (O=development)
   apiGroup: rbac.authorization.k8s.io
 
-- kind: SericeAccount
+- kind: ServiceAccount
   name: aravind-sa
+  namespace: team3-ns
 
 roleRef:
   kind: Role

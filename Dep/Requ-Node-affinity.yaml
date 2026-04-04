@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: req-node-affinity-deploy
+  namespace: aravind-ns
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node-affinity
+  template:
+    metadata:
+      labels:
+        app: node-affinity
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: env
+                operator: In
+                values:
+                - prod
+      containers:
+      - name: req-node-affinity-container
+        image: nginx

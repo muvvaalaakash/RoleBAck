@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fitness-affinity
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fitness-app
+  template:
+    metadata:
+      labels:
+        app: fitness-app
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - fitness-app
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: fitness-container
+        image: pulkit197/fitness_tracker-master-copy3-fitness-app:latest
+        ports:
+        - containerPort: 5000

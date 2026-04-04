@@ -22,7 +22,7 @@ spec:
                 operator: In
                 values:
                 - fitness-app
-            topologyKey: "kubernetes.io/hostname"
+            topologyKey: "kubernetes.io/ip-10-0-1-146"
       containers:
       - name: fitness-container
         image: pulkit197/fitness_tracker-master-copy3-fitness-app:latest

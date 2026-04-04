@@ -23,5 +23,5 @@ spec:
                 values:
                 - dev
       containers:
-      - name: pref_node_flower_container
+      - name: pref-node-flower-container
         image: nginx

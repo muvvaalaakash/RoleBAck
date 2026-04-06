@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: aravind-dep 
+  namespace: aravind-ns
+spec:
+  replicas: 2
+  tolerations:
+    - key: "env"
+      operator: "Equal"
+      value: "dev"
+      effect: "NoSchedule"
+  selector:
+    matchLabels:
+      app: aravind-app
+  template:
+    metadata:
+      labels:
+        app: aravind-app
+    spec: 
+      containers:
+        - name: flower-cont 
+          image: aravindroy1/flower-img:latest
+          ports:
+            - containerPort: 3015
+          
